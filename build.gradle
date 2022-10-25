@@ -2,6 +2,13 @@ plugins {
     id 'java'
 }
 
+task launch(type: JavaExec) {
+    classpath sourceSets.main.runtimeClasspath // <-- Don't change this
+    group = 'Run'
+    description = 'Runs the project\'s Main class'
+    main = "com.gonerd.store.Main"
+}
+
 group 'com.gonerd'
 version '1.0-SNAPSHOT'
 
@@ -10,8 +17,9 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    implementation 'org.atteo:evo-inflector:1.3'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
 }
 
 test {
