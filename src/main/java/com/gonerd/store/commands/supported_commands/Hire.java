@@ -9,14 +9,15 @@ import com.gonerd.store.formatting.inflection.ModernEnglish;
 import com.gonerd.store.objects.Worker;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Hire extends StoreCommand {
 
-	public Hire() {
-		this(null);
+	public Hire(Scanner scanner) {
+		this(null, scanner);
 	}
 
-	public Hire(ArrayList<Argument> args) {
+	public Hire(ArrayList<Argument> args, Scanner scanner) {
 		this.args = args;
 		commandID = "hire";
 		object = "Store";

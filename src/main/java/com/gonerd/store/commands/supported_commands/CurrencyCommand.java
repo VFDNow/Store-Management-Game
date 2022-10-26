@@ -8,15 +8,17 @@ import com.gonerd.store.formatting.currencies.Currencies;
 import com.gonerd.store.formatting.currencies.Currency;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class CurrencyCommand extends StoreCommand implements Currencies {
 
-	public CurrencyCommand() {
-		this(null);
+	public CurrencyCommand(Scanner scanner) {
+		this(null, scanner);
 	}
 
-	public CurrencyCommand(ArrayList <Argument> args) {
+	public CurrencyCommand(ArrayList <Argument> args, Scanner scanner) {
 		this.args = args;
+		this.scanner = scanner;
 		commandID = "currency";
 		object = "Store";
 

@@ -8,14 +8,15 @@ import com.gonerd.store.formatting.Format;
 import com.gonerd.store.objects.Worker;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Wage extends StoreCommand {
 
-	public Wage() {
-		this(null);
+	public Wage(Scanner scanner) {
+		this(null, scanner);
 	}
 
-	public Wage(ArrayList<Argument> args) {
+	public Wage(ArrayList<Argument> args, Scanner scanner) {
 		this.args = args;
 		commandID = "wage";
 		object = "Worker";

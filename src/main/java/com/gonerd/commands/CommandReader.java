@@ -70,7 +70,7 @@ public class CommandReader {
 	}
 
 	// Process a line of input
-	protected static void execCommand(String command) {
+	protected static void execCommand(String command, Scanner scanner) {
 
 		ArrayList<String> commandKeywords = loadCommandKeywords(supportedCommands);
 		ArrayList<String> objectKeywords = loadObjectKeywords();
@@ -127,7 +127,7 @@ public class CommandReader {
 		// Recursively process all other commands on the line (We do this after we exec the current command)
 		// We do this now in case the commands rely on each other
 		for (int i = 1; i < commands.length; i++) {
-			execCommand(prepInput(commands[i]));
+			execCommand(prepInput(commands[i], scanner), scanner);
 		}
 	}
 
@@ -166,17 +166,15 @@ public class CommandReader {
 		return false;
 	}
 
-	protected static String prepInput(String input) {
+	protected static String prepInput(String input, Scanner scanner) {
 		input = input.trim();
 		input = input.toLowerCase();
 		input = input.replaceAll("\\s+", " ");
 
-		Scanner scanner = new Scanner(System.in);
-
 		// Make sure we don't do anything unless they actually enter something
 		if (input.matches("\\s*")) {
 			System.out.print("> ");
-			input = prepInput(scanner.nextLine());
+			input = prepInput(scanner.nextLine(), scanner);
 		}
 
 		// Check for illegal characters
@@ -194,9 +192,8 @@ public class CommandReader {
 			}
 			System.out.println("). Please re-enter your command.");
 			System.out.print("> ");
-			return prepInput(scanner.nextLine());
+			return prepInput(scanner.nextLine(), scanner);
 		}
-		scanner.close();
 		return input;
 	}
 

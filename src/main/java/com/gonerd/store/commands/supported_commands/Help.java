@@ -4,15 +4,16 @@ import com.gonerd.commands.Argument;
 import com.gonerd.store.commands.StoreCommand;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 
 public class Help extends StoreCommand {
 
-	public Help() {
-		this(null);
+	public Help(Scanner scanner) {
+		this(null, scanner);
 	}
 
-	public Help(ArrayList<Argument> args) {
+	public Help(ArrayList<Argument> args, Scanner scanner) {
 		this.args = args;
 		commandID = "help";
 		object = "Store";

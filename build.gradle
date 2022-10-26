@@ -2,13 +2,6 @@ plugins {
     id 'java'
 }
 
-task launch(type: JavaExec) {
-    classpath sourceSets.main.runtimeClasspath // <-- Don't change this
-    group = 'Run'
-    description = 'Runs the project\'s Main class'
-    main = "com.gonerd.store.Main"
-}
-
 group 'com.gonerd'
 version '1.0-SNAPSHOT'
 

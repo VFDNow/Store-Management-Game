@@ -4,14 +4,15 @@ import com.gonerd.commands.Argument;
 import com.gonerd.store.commands.StoreCommand;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Exit extends StoreCommand {
 
-	public Exit() {
-		this(null);
+	public Exit(Scanner scanner) {
+		this(null, scanner);
 	}
 
-	public Exit(ArrayList<Argument> args) {
+	public Exit(ArrayList<Argument> args, Scanner scanner) {
 		this.args = args;
 		commandID = "exit";
 		object = "Store";

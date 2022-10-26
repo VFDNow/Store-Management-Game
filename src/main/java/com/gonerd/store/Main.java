@@ -6,6 +6,7 @@ import com.gonerd.store.formatting.currencies.Currency;
 import com.gonerd.store.objects.Item;
 import com.gonerd.store.objects.Worker;
 
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -13,22 +14,22 @@ public class Main extends CommandReader {
 	public static ArrayList<Worker> workers = new ArrayList<>();
 	public static ArrayList<Item> items = new ArrayList<>();
 	public static Currency currency = Format.currencies[0];
+	public static Scanner scanner;
 	public static float cash = 10000f;
-	public static boolean continueLoop = true;
 	public static Store store;
 
-	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
+	public static void main(String[] args) throws IOException {
+		scanner = new Scanner(System.in);
 		store = new Store("Test Store");
 		System.out.println(store + "\r\n");
 		System.out.println("Welcome to " + store.getName() + ". Start by <hire>-ing employees or <stock>-ing items");
-		while (continueLoop) {
+		while (true) {
 			System.out.print("> ");
-			CommandReader.execCommand(CommandReader.prepInput(scanner.nextLine()));
-				System.out.println();
-				printInfo();
-				System.out.println();
-				System.out.println("Enter a command. Type <help> for a list of commands!");
+			CommandReader.execCommand(CommandReader.prepInput(scanner.nextLine(), scanner), scanner);
+			System.out.println();
+			printInfo();
+			System.out.println();
+			System.out.println("Enter a command. Type <help> for a list of commands!");
 		}
 	}
 

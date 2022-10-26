@@ -9,14 +9,15 @@ import com.gonerd.store.formatting.inflection.ModernEnglish;
 import com.gonerd.store.objects.Item;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Stock extends StoreCommand {
 
-	public Stock() {
-		this(null);
+	public Stock(Scanner scanner) {
+		this(null, scanner);
 	}
 
-	public Stock(ArrayList<Argument> args) {
+	public Stock(ArrayList<Argument> args, Scanner scanner) {
 		this.args = args;
 		commandID = "stock";
 		object = "Store";

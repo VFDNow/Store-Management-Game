@@ -8,6 +8,7 @@ public abstract class Command {
 	protected static CommandReader commandReader;
 	protected String commandID; /* No Accessor or Mutator, constructor modification only
 	 * toString() works as an accessor*/
+	protected Scanner scanner;
 	protected Argument[] params;
 
 	protected String object; // Capitalize object as you would a class name
@@ -50,14 +51,13 @@ public abstract class Command {
 
 		// Now, let's check that we have enough, and if we don't let's get them!
 		if (args.size() < params.length) {
-			Scanner scanner = new Scanner(System.in);
 			// Loop through params and find the ones we are missing, and add them
 			for (int i = 0; i < params.length; i++) {
 				if (i > args.size() - 1) {
 					System.out.println();
 					System.out.println(params[i].getMissingMessage());
 					System.out.print("> ");
-					String argValue = commandReader.prepInput(scanner.nextLine());
+					String argValue = commandReader.prepInput(scanner.nextLine(), scanner);
 					args.add(new Argument(params[i].getMissingMessage(), params[i].getDataType(), argValue));
 
 					// Make sure they didn't give us a keyword unless we expect an OBJECT
@@ -68,7 +68,6 @@ public abstract class Command {
 					}
 				}
 			}
-			scanner.close();
 		}
 
 		// Allows us to validate the repeat count
@@ -138,10 +137,9 @@ public abstract class Command {
 			System.out.println();
 			System.out.println(repeatMessage);
 
-			Scanner scanner = new Scanner(System.in);
 			System.out.print("> ");
 			String input = scanner.nextLine();
-			input = commandReader.prepInput(input);
+			input = commandReader.prepInput(input, scanner);
 			input = input.replaceAll("\\s", "");
 
 			if (commandReader.typeCheck(input, DataType.INT, true)) {

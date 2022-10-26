@@ -10,16 +10,17 @@ import com.gonerd.store.objects.Item;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Open extends StoreCommand {
 
 	private final HashSet<String> complaints = new HashSet<>();
 
-	public Open() {
-		this(null);
+	public Open(Scanner scanner) {
+		this(null, scanner);
 	}
 
-	public Open(ArrayList <Argument> args) {
+	public Open(ArrayList<Argument> args, Scanner scanner) {
 		this.args = args;
 		commandID = "open";
 		object = "Store";
